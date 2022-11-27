@@ -10,9 +10,15 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <style>
+    .border {
+      background-color: white;
+    }
+  </style>
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -30,19 +36,101 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item dropdown">
+            <a id="navEmail" class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false"></a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navEmail">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar sesión</a></li>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+
+
   <main class="pb-5 container">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+
+
+
+    <!-- Titulo y des. -->
+
+    <div class="text-center p-4">
+      <h2><b>Productos</b></h2>
+      <p class="lead">Veras aqui todos los productos de la categoría <b id="categoriaNombre"></b></p>
     </div>
+
+
+    <!-- filtros -->
+
+
+    <div class="container">
+
+      <!-- Barra de buscar -->
+
+      <div class="input-group d-flex justify-content-center">
+        <div class="form-outline text-center w-25">
+          <input type="search" placeholder="Buscar" id="searchProd" class="form-control" />
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col text-end">
+          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+            <input type="radio" class="btn-check" name="options" id="sortAscPrice">
+            <label class="btn btn-light" for="sortAscPrice"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="sortDescPrice">
+            <label class="btn btn-light" for="sortDescPrice"><i class="fas fa-sort-amount-up mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="sortByRelevance">
+            <label class="btn btn-light" for="sortByRelevance"><i class="fas fa-sort-amount-down mr-1"></i>Rel.</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minimo y Máximo -->
+
+      <div class="row">
+        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+          <div class="row container p-0 m-0">
+            <div class="col">
+              <p class="font-weight-normal text-end my-2">Precio</p>
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="min." id="precioMin">
+            </div>
+            <div class="col">
+              <input class="form-control" type="number" placeholder="máx." id="precioMax">
+            </div>
+
+            <!-- Botones de filtrar y limpiar -->
+
+            <div class="col-3 p-0">
+              <div class="btn-group" role="group">
+                <button class="btn btn-light btn-block" id="filtrarRangoPrecio">Filtrar</button>
+                <button class="btn btn-link btn-sm" id="limpiarRangoPrecio">Limpiar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Array con listado de productos -->
+      <div id="product-list-container">
+      </div>
+
   </main>
+
+
+
+
+
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">

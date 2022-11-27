@@ -10,6 +10,12 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .checked {
+      color: orange;
+    }
+  </style>
 </head>
 
 <body>
@@ -30,7 +36,14 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item dropdown">
+            <a id="navEmail" class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false"></a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navEmail">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar sesión</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -38,8 +51,78 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <br>
+      <div id="prodInfoList" style="font-size: 22px">
+        <!-- div con la información del producto -->
+      </div>
+
+      <div class="container">
+        <h2>Comentarios</h2>
+
+        <div id="prodComments" class="border rounded-3 cont">
+
+        </div>
+
+        <br>
+
+
+        <h2>Comentar<h2>
+            <label for="pReview">
+              <h4>Tu opinión:</h4>
+            </label><br>
+            <textarea class="form-control" id="pReview" rows="4" cols="40"
+              style="border: 1px solid lightgray; width: 750px; font-size: 20px"></textarea><br>
+            <label for="pScore">
+              <h4>Tu puntuación:</h4>
+            </label><br>
+            <select class="form-select" id="pScore" name="score"
+              style="border: 1px solid lightgray; width: 200px; height: 50px; font-size: 20px">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select><br>
+            <button id="publishComment" class="btn btn-primary btn-lg" type="submit">Enviar</button>
+            <hr style="margin-top: 35px; margin-bottom: 20px"><br>
+
+
+
+            <h2 style="text-align: center;">Productos relacionados</h2><br>
+
+            <!-- Código de productos relacionados anterior
+
+            <div id="relatedProducts" class="" style="margin-top: 50px">
+
+            </div>
+            -->
+
+            <!-- Desafiate entrega 4 -->
+
+            <div class="row d-flex justify-content-center">
+
+              <div id="carouselOfRelProd" class="carousel slide text-center col-md-6" data-bs-ride="carousel"
+              style="border: 1px solid lightgray; padding: 12px; width: 50%; ">
+
+                <div class="carousel-inner" role="button" id="carouselProducts">
+
+
+                </div>
+
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselOfRelProd"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselOfRelProd"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+
       </div>
     </div>
   </main>
@@ -63,7 +146,7 @@
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
-</body>
 
+</body>
+  <script src="js/product-info.js"></script>
 </html>

@@ -188,3 +188,49 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+#prodImg {
+  display: inline-block;
+}
+
+#infoImg {
+  display: inline-block;
+  border: 1px solid lightgray;
+  background: lightgray;
+  margin: 6px;
+}
+
+#infoImg > img{
+  width: 350px;
+  height: auto;
+}
+
+
+
+.rel-prod-button > #infoImg{
+  width: 350px;
+  height: auto;
+  background-color: white;
+  border-style: none;
+}
+
+
+.rel-prod-button{
+  border-color: rgba(211, 211, 211, 0.336);
+  background-color: white;
+  margin: auto;
+}
+
+#pfPicBrd{
+  border: 1px solid lightgray;
+  background: white;
+  width: min-content;
+  display: inline-block;
+  margin: 3px;
+  padding: 3px;
+}
+
+#pfPic{
+  width: 120px;
+  height: 120px;
+}

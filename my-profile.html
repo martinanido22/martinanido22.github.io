@@ -44,7 +44,14 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item dropdown">
+            <a id="navEmail" class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false"></a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navEmail">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar sesión</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -52,9 +59,80 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div style="max-width: auto; margin-left: 10%; margin-right: 10%;">
+        <div class="container">
+          <h1 style="margin-top: 30px; margin-bottom: 50px; float: left">Perfil</h1>
+          <div class="item" id="pfPicBrd" style="float: right">
+            <div class="img" id="pfPicContainer"></div>
+          </div>
+        </div>
+        <br><br><br><br><br>
+        <hr>
+        <form class="needs-validation" novalidate>
+
+          <div class="row">
+            <div class="col-6 position-relative">
+              <label for="pFName" class="form-label">Primer Nombre*</label>
+              <input type="text" class="form-control" id="pFName" required>
+              <div class="invalid-tooltip">
+                Debe completar este campo.
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="pSName" class="form-label">Segundo Nombre</label>
+              <input type="text" class="form-control" id="pSName">
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-6 position-relative">
+              <label for="pFSurname" class="form-label">Primer Apellido*</label>
+              <input type="text" class="form-control" id="pFSurname" required>
+              <div class="invalid-tooltip">
+                Debe completar este campo.
+              </div>
+            </div>
+            <div class="col-6">
+              <label for="pSSurname" class="form-label">Segundo Apellido</label>
+              <input type="text" class="form-control" id="pSSurname">
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-6 position-relative">
+              <label for="pEmail" class="form-label">E-mail*</label>
+              <input type="email" class="form-control" id="pEmail" required>
+              <div class="invalid-tooltip">
+                Debe completar este campo.
+              </div>
+            </div>
+            <!-- Todavía no tiene ninguna funcionalidad -->
+            <div class="col-6">
+              <label for="pImage" class="form-label">Imágen de perfil</label>
+              <input type="file" class="form-control" id="pImage" accept="image/jpeg, image/png">
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-6">
+              <label for="pNumber" class="form-label">Telefono de contacto</label>
+              <input type="number" class="form-control" id="pNumber">
+            </div>
+          </div>
+          <br>
+
+
+          <hr>
+          <button type="submit" class="btn btn-primary col-2">Guardar Cambios</button>
+        </form>
       </div>
+    </div>
+
+
+
     </div>
   </main>
   <footer class="text-muted">

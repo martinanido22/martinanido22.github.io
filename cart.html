@@ -29,7 +29,14 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item dropdown">
+            <a id="navEmail" class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false"></a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navEmail">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="#" onclick="logOut()">Cerrar sesión</a></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -37,9 +44,198 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <h2 style="text-align: center; padding: 20px;">Carrito de compras</h2>
+      <div class="container">
+        <h4 style="float: left;">Articulos a comprar</h4>
+        <br> <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Costo</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Subtotal</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="cart">
+
+          </tbody>
+        </table>
+        <hr>
+
+        <form action="#" method="get" class="needs-validation" novalidate>
+
+          <h4 style="float: left;">Tipo de envío</h4>
+          <br><br>
+          <div>
+            <input class="shipMth" onclick="calcShipment()" type="radio" name="shipmentType" required> Premium 2 a 5 días (15%)<br>
+            <input class="shipMth" onclick="calcShipment()" type="radio" name="shipmentType" required> Express 5 a 8 días (7%)<br>
+            <input class="shipMth" onclick="calcShipment()" type="radio" name="shipmentType" required> Standard 12 a 15 días (5%)<br>
+            <div class="invalid-feedback">
+              Seleccione un tipo de envío.
+            </div><br>
+          </div>
+
+          <h4 style="float: left;">Dirección de envío</h4><br><br>
+
+          <div class="row">
+            <div class="col-6">
+              <div style="margin-bottom: 15px;">
+                <label for="eCalle" class="form-label">Calle</label>
+                <input type="text" class="form-control" id="eCalle" style="min-width: 50%;"
+                  required>
+                <div class="invalid-feedback">
+                  Ingresa una calle.
+                </div>
+              </div>
+              <div>
+                <label for="eEsquina" class="form-label">Esquina</label>
+                <input type="text" class="form-control" id="eEsquina" style="min-width: 50%;" required>
+                <div class="invalid-feedback">
+                  Ingresa una esquina.
+                </div>
+              </div>
+            </div>
+            <div class="col" style="margin-right: 0;">
+              <label for="eNumero" class="form-label" style="padding-right:100%; margin-right: 0;">Número</label>
+              <input type="text" style="min-width: 200px; max-width: 50%; margin-right: 0;" class="form-control"
+                id="eNumero" required>
+              <div class="invalid-feedback">
+                Ingresa un número.
+              </div>
+            </div>
+          </div>
+          <hr>
+
+
+          <h3 style="float: left;">Costos</h3>
+          <br><br>
+          <div class="container row border border-1 rounded" style="padding: 0; margin: 0">
+            <div class="col-6" style="float: left; padding-top: 10px; padding-bottom: 10px; padding-left: 15px;">
+              <span>Subtotal</span><br>
+              <span style="font-size: 15px; color: grey;">Costo unitario del producto por cantidad</span>
+            </div>
+            <div class="col-6" style="padding-top: 10px; padding-bottom: 10px; padding-right: 15px;">
+              <span style="float: right;">USD <span id="productsCost"></span></span>
+            </div>
+            <hr style="padding: 0; margin: 0">
+            <div class="col-6" style="float: left; padding-top: 10px; padding-bottom: 10px; padding-left: 15px;">
+              <span>Costo de envío</span><br>
+              <span style="font-size: 15px; color: grey;">Según el tipo de envío</span>
+            </div>
+            <div class="col-6" style="padding-top: 10px; padding-bottom: 10px; padding-right: 15px;">
+              <span style="float: right;">USD <span id="shippingCost"></span></span>
+            </div>
+            <hr style="padding: 0; margin: 0">
+            <div class="col-6" style="float: left; padding-top: 10px; padding-bottom: 10px; padding-left: 15px;">
+              <span>Total ($)</span><br>
+            </div>
+            <div class="col-6" style="padding-top: 10px; padding-bottom: 10px; padding-right: 15px;">
+              <span style="float: right;"><b>USD <span id="finalCost"></span></b></span>
+            </div>
+          </div>
+          <hr>
+
+          <h3 style="float: left">Forma de pago</h3><br><br>
+          <div>
+            <p id="payModal" style="font-size: 15px;"><span id="paymentMethod">No ha seleccionado</span> <a
+                href="javascript:void(0)" style="padding-left: 15px;" data-bs-toggle="modal"
+                data-bs-target="#purchaseMethod" onclick="checkModalValidity()">Seleccionar</a></p>
+            <div class="invalid-feedback">
+              Debe seleccionar una forma de pago.
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div class="modal fade" id="purchaseMethod" tabindex="-1" aria-labelledby="purchaseMethodLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="purchaseMethodLabel"><b>Forma de pago</b></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                  <div style="margin-right: 2%; margin-left: 2%;">
+
+                    <input id="creditCard" onclick="checkModalValidity()" type="radio" name="payMethod" required>
+                    Tarjeta de crédito
+                    <hr>
+
+                    <fieldset id="payMethodCredit">
+
+                      <div class="row">
+
+                        <div class="col-6">
+                          <div style="margin-bottom: 15px;">
+                            <label for="cardNumber" class="form-label">Número de tarjeta</label>
+                            <input type="text" class="form-control" id="cardNumber" style="min-width: 50%;" required>
+                            <div class="invalid-feedback">
+                              Ingrese el número de su terjeta.
+                            </div>
+                          </div>
+                          <div>
+                            <label for="expirationDate" class="form-label">Vencimiento (MM/AA)</label>
+                            <input type="text" class="form-control" id="expirationDate" style="min-width: 50%;"
+                              required>
+                            <div class="invalid-feedback">
+                              Ingrese la fecha de vencimiento.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col" style="margin-right: 0;">
+                          <label for="securityCode" class="form-label" style="padding-right: 0; margin-right: 0;">Código
+                            de seg.</label>
+                          <input type="text" style="max-width: 75%; margin-right: 0;" class="form-control"
+                            id="securityCode" required>
+                          <div class="invalid-feedback">
+                            Ingrese el código de seguridad.
+                          </div>
+                        </div>
+
+                      </div>
+                    </fieldset>
+                    <br>
+
+                    <input id="transferency" type="radio" name="payMethod" onclick="checkModalValidity()" required>
+                    Transferencia bancaria
+                    <hr>
+                    <fieldset id="payMethodTransfer">
+                      <div class="row">
+                        <div class="col-6">
+                          <label for="accountNumber" class="form-label">Número de cuenta</label>
+                          <input type="text" class="form-control" id="accountNumber" style="margin-bottom: 15px;"
+                            required>
+                          <div class="invalid-feedback">
+                            Ingrese un número.
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+
+
+                </div>
+                <div class="modal-footer">
+                  <button id="closePaymentModal" type="button" class="btn btn-primary"
+                    data-bs-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+
+
+          <button type="submit" id="cartPurchase" class="btn btn-primary col-12">Finalizar compra</button>
+
+        </form>
       </div>
+
+      <div id="purchaseAlert"></div>
+
     </div>
   </main>
   <footer class="text-muted">

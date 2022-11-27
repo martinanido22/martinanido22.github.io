@@ -4,26 +4,77 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <title>eMercado - Todo lo que busques está aquí</title>
-  
+
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
   <style>
     body {
       background-color: rgb(248, 249, 250);
+    }
+
+    .formData {
+      width: 300px;
+      height: 40px;
+    }
+
+    #alert {
+      color: red;
+      font-size: medium;
     }
   </style>
 </head>
 
 <body>
   <main class="mt-5">
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+    <div style="text-align:center">
+      <img src="img/login.png" width="500px">
+      <div class="row justify-content-center">
+
+        <form class="needs-validation" style="width: 300px;" novalidate>
+
+          <h2><b>Inicio de Sesión</b></h2><br>
+
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="passwordBar">Email (debe incluir "@")</label>
+            <input type="email" id="emailBar" class="form-control" placeholder="Email" required>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" for="passwordBar">Contraseña (min. 8 caracteres)</label>
+            <input type="password" id="passwordBar" class="form-control" placeholder="Contraseña" required>
+          </div>
+
+          <!-- Alerta -->
+          <div id="alert">
+            <!--<p>Email o Contraseña erroneo.</p>-->
+          </div>
+
+          <div class="row">
+            
+          <!-- Submit button -->
+          <button type="button" id="ingresar" class="btn btn-primary btn-block mb-4 col-4">Ingresar</button>            
+
+
+          <!-- Acceder con Google -->
+          <script src="https://accounts.google.com/gsi/client" async defer></script>
+          <div class="col-8" id="buttonDiv"></div>
+          </div>
+
+        </form>
       </div>
+
+
     </div>
+
+
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -34,6 +85,7 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+
   <script src="js/login.js"></script>
 </body>
 
